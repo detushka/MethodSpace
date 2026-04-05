@@ -14,16 +14,6 @@
 3. Выберите проект `MethodSpace` как startup project.
 4. Нажмите `F5`.
 
-## Как работает база
-
-- В `App.config` уже настроено подключение к SQL Server `MAKSIK\\SQLEXPRESS`, база `CollegeMethodService`.
-- Если на другом компьютере этой базы нет, приложение автоматически запускается в локальном режиме и не падает.
-
-## Демо-вход без базы
-
-- Администратор: `admin@methodspace.local` / `admin123`
-- Методист: `methodist@methodspace.local` / `method123`
-- Преподаватель: `teacher@methodspace.local` / `teacher123`
 
 ## Примечание
 
