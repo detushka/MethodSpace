@@ -1,0 +1,91 @@
+<Page x:Class="MethodSpace.Pages.AdminPanelPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Админ-панель">
+
+    <ScrollViewer>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Административная панель"
+                       Style="{StaticResource PageTitleStyle}"/>
+
+            <Border Grid.Row="1"
+                    Style="{StaticResource FilterPanelStyle}">
+                <StackPanel>
+                    <TextBlock Text="Статистика системы"
+                               Style="{StaticResource SectionTitleStyle}"/>
+                    <WrapPanel>
+                        <Border Style="{StaticResource ItemCardBorderStyle}" Width="200" Background="{StaticResource AccentBrush}">
+                            <StackPanel>
+                                <TextBlock Text="Пользователи" Foreground="White" FontSize="14"/>
+                                <TextBlock x:Name="UsersCount" Text="0" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource ItemCardBorderStyle}" Width="200" Background="{StaticResource SuccessBrush}">
+                            <StackPanel>
+                                <TextBlock Text="Документы" Foreground="White" FontSize="14"/>
+                                <TextBlock x:Name="DocumentsCount" Text="0" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource ItemCardBorderStyle}" Width="200" Background="#D98A35">
+                            <StackPanel>
+                                <TextBlock Text="Курсы" Foreground="White" FontSize="14"/>
+                                <TextBlock x:Name="CoursesCount" Text="0" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource ItemCardBorderStyle}" Width="200" Background="#5B7BC8">
+                            <StackPanel>
+                                <TextBlock Text="Новости" Foreground="White" FontSize="14"/>
+                                <TextBlock x:Name="NewsCount" Text="0" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="2"
+                    Style="{StaticResource FilterPanelStyle}">
+                <StackPanel>
+                    <TextBlock Text="Быстрые действия"
+                               Style="{StaticResource SectionTitleStyle}"/>
+                    <WrapPanel>
+                        <Button Content="Добавить новость" Click="AddNews_Click"
+                                Style="{StaticResource SuccessButtonStyle}" Width="200" Height="40" Margin="0,0,15,10"/>
+                        <Button Content="Добавить документ" Click="AddDocument_Click"
+                                Style="{StaticResource SuccessButtonStyle}" Width="200" Height="40" Margin="0,0,15,10"/>
+                        <Button Content="Добавить курс" Click="AddCourse_Click"
+                                Style="{StaticResource SuccessButtonStyle}" Width="200" Height="40" Margin="0,0,15,10"/>
+                        <Button Content="Создать опрос" Click="CreateSurvey_Click"
+                                Style="{StaticResource SuccessButtonStyle}" Width="200" Height="40" Margin="0,0,15,10"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="3"
+                    Style="{StaticResource FilterPanelStyle}">
+                <StackPanel>
+                    <TextBlock Text="Последние активности"
+                               Style="{StaticResource SectionTitleStyle}"/>
+                    <ListView x:Name="RecentActivities" Height="220">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource ItemCardBorderStyle}" Margin="0,0,0,8">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Date, StringFormat='dd.MM.yyyy HH:mm'}" Width="130" Foreground="{StaticResource SecondaryTextBrush}"/>
+                                        <TextBlock Text="{Binding Action}" Foreground="{StaticResource PrimaryTextBrush}" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

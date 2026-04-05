@@ -1,0 +1,34 @@
+<Page x:Class="MethodSpace.Pages.EventsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Мероприятия"
+      Loaded="Page_Loaded">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="План мероприятий"
+                   Style="{StaticResource PageTitleStyle}"/>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource FilterPanelStyle}"
+                Padding="8"
+                Margin="0">
+            <ListView x:Name="EventsList">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Мероприятие" Width="300" DisplayMemberBinding="{Binding EventName}"/>
+                        <GridViewColumn Header="Дата проведения" Width="150"
+                                        DisplayMemberBinding="{Binding EventDate, StringFormat='dd.MM.yyyy HH:mm'}"/>
+                        <GridViewColumn Header="Место" Width="200" DisplayMemberBinding="{Binding Location}"/>
+                        <GridViewColumn Header="Организатор" Width="200" DisplayMemberBinding="{Binding OrganizerName}"/>
+                        <GridViewColumn Header="Описание" Width="300" DisplayMemberBinding="{Binding Description}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+    </Grid>
+</Page>

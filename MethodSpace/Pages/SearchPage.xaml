@@ -1,0 +1,64 @@
+<Page x:Class="MethodSpace.Pages.SearchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Поиск">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Поиск материалов"
+                   Style="{StaticResource PageTitleStyle}"/>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource FilterPanelStyle}">
+            <StackPanel>
+                <TextBox x:Name="SearchBox"
+                         Height="40"
+                         Margin="0,0,0,10"
+                         TextChanged="SearchBox_TextChanged"/>
+                <WrapPanel>
+                    <RadioButton x:Name="SearchAll" Content="Везде" GroupName="SearchType" IsChecked="True"
+                                 Checked="SearchType_Changed"/>
+                    <RadioButton x:Name="SearchDocuments" Content="Документы" GroupName="SearchType"
+                                 Checked="SearchType_Changed"/>
+                    <RadioButton x:Name="SearchCourses" Content="Курсы" GroupName="SearchType"
+                                 Checked="SearchType_Changed"/>
+                    <RadioButton x:Name="SearchNews" Content="Новости" GroupName="SearchType"
+                                 Checked="SearchType_Changed"/>
+                    <RadioButton x:Name="SearchTips" Content="Советы" GroupName="SearchType"
+                                 Checked="SearchType_Changed"/>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <ListView x:Name="ResultsList"
+                  Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource ItemCardBorderStyle}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}"
+                                       FontWeight="SemiBold"
+                                       FontSize="15"
+                                       Foreground="{StaticResource PrimaryTextBrush}"/>
+                            <TextBlock Text="{Binding Type}"
+                                       Margin="0,6,0,0"
+                                       Foreground="{StaticResource AccentBrush}"
+                                       FontWeight="SemiBold"
+                                       FontSize="12"/>
+                            <TextBlock Text="{Binding Description}"
+                                       TextWrapping="Wrap"
+                                       Foreground="{StaticResource SecondaryTextBrush}"
+                                       FontSize="12"
+                                       Margin="0,6,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

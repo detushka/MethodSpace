@@ -1,0 +1,60 @@
+<Window x:Class="MethodSpace.Views.NotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Уведомления"
+        Height="520"
+        Width="460"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource AppBackgroundBrush}">
+
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Style="{StaticResource FilterPanelStyle}">
+            <StackPanel>
+                <TextBlock Text="Мои уведомления"
+                           Style="{StaticResource SectionTitleStyle}"
+                           Margin="0,0,0,6"/>
+                <TextBlock Text="Откройте уведомление двойным щелчком, чтобы увидеть полную информацию."
+                           Style="{StaticResource HintTextStyle}"/>
+            </StackPanel>
+        </Border>
+
+        <ListBox x:Name="NotificationsList"
+                 Grid.Row="1"
+                 MouseDoubleClick="NotificationsList_MouseDoubleClick">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource ItemCardBorderStyle}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}"
+                                       FontWeight="SemiBold"
+                                       FontSize="16"
+                                       TextWrapping="Wrap"
+                                       Foreground="{StaticResource PrimaryTextBrush}"/>
+                            <TextBlock Text="{Binding Message}"
+                                       TextWrapping="Wrap"
+                                       FontSize="13"
+                                       Foreground="{StaticResource SecondaryTextBrush}"
+                                       Margin="0,8,0,0"/>
+                            <TextBlock FontSize="11"
+                                       Foreground="{StaticResource SecondaryTextBrush}"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,10,0,0">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0:dd.MM.yyyy HH:mm}">
+                                        <Binding Path="CreatedAt"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

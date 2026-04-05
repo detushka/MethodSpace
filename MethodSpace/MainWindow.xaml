@@ -1,0 +1,175 @@
+<Window x:Class="MethodSpace.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MethodSpace - Методическая служба колледжа"
+        Height="760"
+        Width="1320"
+        Background="{StaticResource AppBackgroundBrush}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="290"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Background="{StaticResource SidebarBrush}"
+                CornerRadius="24"
+                Padding="18">
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Top">
+                    <Border Background="{StaticResource SidebarSecondaryBrush}"
+                            CornerRadius="16"
+                            Padding="16"
+                            Margin="0,0,0,16"
+                            MouseLeftButtonDown="Window_MouseLeftButtonDown">
+                        <StackPanel>
+                            <TextBlock Text="MethodSpace"
+                                       FontSize="26"
+                                       FontWeight="SemiBold"
+                                       Foreground="White"/>
+                            <TextBlock Text="Методическая служба колледжа"
+                                       Margin="0,6,0,0"
+                                       Foreground="#C5D5E6"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#24384F"
+                            CornerRadius="16"
+                            Padding="14"
+                            Margin="0,0,0,16">
+                        <StackPanel>
+                            <TextBlock x:Name="UserNameText"
+                                       Foreground="White"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"
+                                       TextWrapping="Wrap"/>
+                            <TextBlock x:Name="UserRoleText"
+                                       Foreground="#B1C3D7"
+                                       FontSize="12"
+                                       Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Bottom">
+                    <Separator Background="#34506F" Margin="0,14,0,14"/>
+                    <Button Content="Уведомления"
+                            Click="ShowNotifications"
+                            Tag="notifications"
+                            Style="{StaticResource NavButtonStyle}"/>
+                    <Button Content="Выход"
+                            Click="Logout"
+                            Tag="logout"
+                            Style="{StaticResource NavButtonStyle}"/>
+                </StackPanel>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="MenuPanel">
+                        <Button Content="Главная" Click="NavigateToMain" Tag="main" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Методическое обеспечение" Click="NavigateToDocuments" Tag="documents" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Курсы повышения квалификации" Click="NavigateToCourses" Tag="courses" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Аттестация" Click="NavigateToAttestation" Tag="attestation" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Мероприятия" Click="NavigateToEvents" Tag="events" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Советы педагогам" Click="NavigateToTips" Tag="tips" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Сообщения" Click="NavigateToMessages" Tag="messages" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Обратная связь" Click="NavigateToFeedback" Tag="feedback" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Опросы" Click="NavigateToSurveys" Tag="surveys" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Предложения" Click="NavigateToSuggestions" Tag="suggestions" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Голосования" Click="NavigateToVoting" Tag="voting" Style="{StaticResource NavButtonStyle}"/>
+                        <Button Content="Поиск" Click="NavigateToSearch" Tag="search" Style="{StaticResource NavButtonStyle}"/>
+
+                        <Separator x:Name="AdminSeparator"
+                                   Background="#34506F"
+                                   Margin="0,18,0,18"
+                                   Visibility="Collapsed"/>
+                        <Button x:Name="AdminPanelBtn"
+                                Content="Админ-панель"
+                                Click="NavigateToAdminPanel"
+                                Tag="admin"
+                                Style="{StaticResource NavButtonStyle}"
+                                Visibility="Collapsed"/>
+                        <Button x:Name="UserManagementBtn"
+                                Content="Управление пользователями"
+                                Click="NavigateToUserManagement"
+                                Tag="user-management"
+                                Style="{StaticResource NavButtonStyle}"
+                                Visibility="Collapsed"/>
+                        <Button x:Name="ContentManagementBtn"
+                                Content="Управление контентом"
+                                Click="NavigateToContentManagement"
+                                Tag="content-management"
+                                Style="{StaticResource NavButtonStyle}"
+                                Visibility="Collapsed"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="18,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0"
+                    Background="{StaticResource CardBrush}"
+                    BorderBrush="{StaticResource CardBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="24"
+                    Padding="18,10"
+                    MouseLeftButtonDown="Window_MouseLeftButtonDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Рабочее пространство"
+                                   Foreground="{StaticResource PrimaryTextBrush}"
+                                   FontWeight="SemiBold"
+                                   FontSize="18"/>
+                        <TextBlock Text="Навигация и управление материалами колледжа"
+                                   Margin="0,2,0,0"
+                                   Foreground="{StaticResource SecondaryTextBrush}"
+                                   FontSize="12"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Button Content="_"
+                                Style="{StaticResource WindowControlButtonStyle}"
+                                Click="MinimizeWindow"/>
+                        <Button Content="□"
+                                Style="{StaticResource WindowControlButtonStyle}"
+                                Click="MaximizeWindow"/>
+                        <Button Content="X"
+                                Style="{StaticResource WindowControlButtonStyle}"
+                                Click="CloseWindow"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1"
+                    Margin="0,16,0,0"
+                    Background="{StaticResource CardBrush}"
+                    BorderBrush="{StaticResource CardBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="24"
+                    Padding="10">
+                <Frame x:Name="MainFrame"
+                       Background="Transparent"
+                       NavigationUIVisibility="Hidden"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
